@@ -25,9 +25,16 @@ struct ProductListView: View {
             .navigationTitle("Products")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    HStack {
-                        Image(systemName: "cart")
-                        Text("\(cartManager.totalCount)")
+                    NavigationLink(destination: CheckoutView(
+                        viewModel: CheckoutViewModel(
+                            cartItems: cartManager.items,
+                            paymentService: MockPaymentService()
+                        )
+                    )) {
+                        HStack {
+                            Image(systemName: "cart")
+                            Text("\(cartManager.totalCount)")
+                        }
                     }
                 }
             }
