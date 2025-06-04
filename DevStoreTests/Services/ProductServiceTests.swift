@@ -8,18 +8,11 @@
 import XCTest
 @testable import DevStore
 
-final class MockProductService: ProductService {
-    func fetchProducts() async throws -> [Product] {
-        return [Product(id: 1, title: "Mock", price: 10, description: "", category: "", image: "")]
-    }
-}
-
 final class ProductServiceTests: XCTestCase {
     func testFetchProducts() async throws {
         let service = MockProductService()
         let products = try await service.fetchProducts()
         XCTAssertEqual(products.count, 1)
-        XCTAssertEqual(products[0].title, "Mock")
+        XCTAssertEqual(products[0].title, "Mock Product")
     }
 }
-
