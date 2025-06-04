@@ -1,6 +1,6 @@
-# 🛍 SwiftCommerce
+# 🛍 DevStore
 
-Welcome to **SwiftCommerce**, a professional e-commerce platform built with **SwiftUI**, **async/await**, and **TDD**. This project is designed to demonstrate modern iOS development practices using **Fake Store API** for product data and prepares for Stripe credit card integration in upcoming phases.
+Welcome to **DevCommerce**, a professional e-commerce platform built with **SwiftUI**, **async/await**, and **TDD**. This project is designed to demonstrate modern iOS development practices using **Fake Store API** for product data and prepares for Stripe credit card integration in upcoming phases.
 
 > 📦 Phase 1: Product Listing with MVVM, Service Layer, Unit Testing, and SwiftUI Preview
 
