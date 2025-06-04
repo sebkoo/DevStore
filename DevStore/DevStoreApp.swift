@@ -15,6 +15,7 @@ struct DevStoreApp: App {
         WindowGroup {
             ProductListView(viewModel: ProductListViewModel(service: DefaultProductService()))
                 .environmentObject(cartManager)
+                .environmentObject(FavoritesManager())
         }
     }
 }

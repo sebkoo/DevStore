@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class FavoriteManager: ObservableObject {
+final class FavoritesManager: ObservableObject {
     @Published private(set) var favorites: Set<Int> = []
     private let key = "FAVORITE_PRODUCTS"
 
