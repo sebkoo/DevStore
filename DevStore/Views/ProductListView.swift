@@ -13,9 +13,13 @@ struct ProductListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.products) { product in
-                Text(product.title)
-                    .font(.headline)
-                Text("$\(product.price, specifier: "%.2f")")
+                NavigationLink(destination: ProductDetailView(viewModel: .init(product: product))) {
+                    VStack(alignment: .leading) {
+                        Text(product.title)
+                            .font(.headline)
+                        Text("$\(product.price, specifier: "%.2f")")
+                    }
+                }
             }
         }
         .navigationTitle("Products")
