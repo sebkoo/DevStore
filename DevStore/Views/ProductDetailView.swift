@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductDetailView: View {
     @StateObject var viewModel: ProductDetailViewModel
+    @EnvironmentObject var cartManager: CartManager
 
     var body: some View {
         ScrollView {
@@ -36,6 +37,17 @@ struct ProductDetailView: View {
 
                 Text(viewModel.product.description)
                     .font(.body)
+
+                Button {
+                    cartManager.addToCart(product: viewModel.product)
+                } label: {
+                    Text("Add to Cart")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
             .padding()
         }
