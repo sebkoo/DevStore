@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductListView: View {
     @StateObject var viewModel: ProductListViewModel
+    @EnvironmentObject var cartManager: CartManager
 
     var body: some View {
         NavigationView {
@@ -21,13 +22,25 @@ struct ProductListView: View {
                     }
                 }
             }
+            .navigationTitle("Products")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    HStack {
+                        Image(systemName: "cart")
+                        Text("\(cartManager.totalCount)")
+                    }
+                }
+            }
+            .task { await viewModel.fetchProducts() }
         }
-        .navigationTitle("Products")
-        .task { await viewModel.fetchProducts() }
     }
 }
 
 #Preview {
     let mockService = MockProductService()
-    ProductListView(viewModel: .init(service: mockService))
+    let viewModel = ProductListViewModel(service: mockService)
+    let cartManager = CartManager()
+
+    ProductListView(viewModel: viewModel)
+        .environmentObject(cartManager)
 }
