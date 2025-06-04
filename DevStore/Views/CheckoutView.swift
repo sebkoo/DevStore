@@ -14,13 +14,10 @@ struct CheckoutView: View {
 
     var body: some View {
         VStack {
-            if let url = viewModel.checkoutURL {
-                Button("Open Checkout in Safari") {
-                    UIApplication.shared.open(url)
-                }
-                .padding()
-            } else if viewModel.isLoading {
-                ProgressView("Starting checkout...")
+            if viewModel.isLoading {
+                ProgressView("Starting Checkout…")
+            } else if let url = viewModel.checkoutURL {
+                SafariView(url: url)
             } else {
                 Button("Start Checkout") {
                     Task { await viewModel.startCheckout() }
