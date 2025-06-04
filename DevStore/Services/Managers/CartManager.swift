@@ -13,7 +13,7 @@ final class CartManager: ObservableObject {
 
     private let key = "CART_ITEMS"
 
-    init() { load() }
+    init() { loadCart() }
 
     func addToCart(product: Product) {
         if let index = items.firstIndex(where: { $0.product.id == product.id }) {
@@ -21,26 +21,26 @@ final class CartManager: ObservableObject {
         } else {
             items.append(CartItem(id: product.id, product: product, quantity: 1))
         }
-        save()
+        saveCart()
     }
 
     func removeFromCart(productId: Int) {
         items.removeAll { $0.product.id == productId }
-        save()
+        saveCart()
     }
 
     func clearCart() {
         items = []
-        save()
+        saveCart()
     }
 
-    private func save() {
+    private func saveCart() {
         if let data = try? JSONEncoder().encode(items) {
             UserDefaults.standard.set(data, forKey: key)
         }
     }
 
-    private func load() {
+    private func loadCart() {
         guard let data = UserDefaults.standard.data(forKey: key),
               let decoded = try? JSONDecoder().decode([CartItem].self, from: data) else { return }
         self.items = decoded
