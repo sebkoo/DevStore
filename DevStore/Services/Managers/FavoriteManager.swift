@@ -23,6 +23,10 @@ final class FavoriteManager: ObservableObject {
         saveFavorites()
     }
 
+    func isFavorite(_ product: Product) -> Bool {
+        favorites.contains(product.id)
+    }
+
     private func saveFavorites() {
         let ids = Array(favorites)
         UserDefaults.standard.set(ids, forKey: key)
