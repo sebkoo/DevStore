@@ -37,6 +37,11 @@ struct ProductListView: View {
                         }
                     }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink("Login") {
+                        LoginView(viewModel: AuthViewModel(authService: DefaultAuthService()))
+                    }
+                }
             }
             .task { await viewModel.fetchProducts() }
         }
