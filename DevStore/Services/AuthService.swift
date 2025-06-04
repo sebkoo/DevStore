@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AuthService {
-    func login(username: String, pasword: String) async throws -> AuthToken
+    func login(username: String, password: String) async throws -> AuthToken
 }
